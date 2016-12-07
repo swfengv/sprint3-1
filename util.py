@@ -12,6 +12,8 @@ from google.appengine.ext import testbed
 
 from user import *
 
+userList = []
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -35,12 +37,27 @@ def parseTxt(name):
             accnt = st.strip()
 
             user = User()
-            user.name = uName
+            user.Name = uName
             user.password = password
             user.aType = accnt
 
             user.put()
             result.append(user)
             st = f.readline()
-
     return result
+
+def getAccount(userName, uList):
+    if userName == None:
+        print("name is None")
+        
+    if len(uList) == 0:
+        print("name is None")
+
+    for i in range(len(uList)):
+        if userName.strip() == uList[i].getName().strip():
+            return uList[i]
+
+def getInstrAccount(uList):
+    for i in range(len(uList)):
+        if uList[i].getaType() == "i":
+            return uList[i]
