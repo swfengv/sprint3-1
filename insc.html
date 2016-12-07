@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Instructor Center</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+
+<body>
+  <h1>
+  Instructor Center
+  </h1>
+  <div id="list_of_questions">
+  <form action="/chat" method="get">
+	<table>
+	<tr>
+    <th></th>
+  	<th>Student</th>
+  	<th>Class</th>
+  	<th>Question</th>
+    <th>Time</th>
+  <tr>
+  {% for q in QL %}
+{% if q.answered == False %}
+  <tr>
+    <td> <input type="radio" name="Quest" value="{{ q.put().id }}" required></td>
+    <td>{{ q.owner }}</td>
+    <td>{{ q.lec }}</td>
+    <td>{{ q.topic }}</td>
+    <td>{{ q.time }}</td>
+  </tr>
+    {% endif %}
+  {% endfor %}
+</table>
+
+  <input type="submit" value="Go to Question">
+  </form>
+  </div>
+</body>
+
+
+<div id="new_question">
+Ask a new question:
+<br>
+<textarea input type="text" name="topic" value="topic" rows="1" cols="48"></textarea>
+   <br>
+<textarea input type="text" name="content" value="content" rows="5" cols="48"></textarea>
+<br>
+   <input type="text" value="student" name="student"></input>
+<br>
+<input type="submit" value= "Ask a question"/>
+
+</div>
+<form action="/faq" method="get">
+<input type="submit" value= "Go to faq"/>
+</form>
+
+
+
+
+
+</html>
