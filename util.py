@@ -54,10 +54,10 @@ def getAccount(userName, uList):
         print("name is None")
 
     for i in range(len(uList)):
-        if userName.strip() == uList[i].getName().strip():
+        if userName.strip() == uList[i].Name.strip():
             return uList[i]
 
 def getInstrAccount(uList):
     for i in range(len(uList)):
-        if uList[i].getaType() == "i":
+        if uList[i].aType == "i":
             return uList[i]

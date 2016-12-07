@@ -38,10 +38,10 @@ class Login(webapp2.RequestHandler):
             self.response.write(template.render(template_values))
         
         else:
-            if User.query(User.name == uNm).get().aType == 's':
+            if User.query(User.Name == uNm).get().aType == 's':
                 self.redirect('/studentcenter')
         
-            if User.query(User.name == uNm).get().aType == 'i':
+            if User.query(User.Name == uNm).get().aType == 'i':
                 self.redirect('/instructorcenter')
 
     def post(self):
@@ -51,13 +51,8 @@ class Login(webapp2.RequestHandler):
         uNm = self.request.get("uName")
         uPwd = self.request.get('uPass')
         
-        print(userList)
-        print(uNm)
-        print(uPwd)
-        
         for item in userList:
-            if item.userName == uNm and item.password == uPwd:
-                print("\t\tIs valid account")
+            if item.Name == str(uNm) and item.password == str(uPwd):
                 validAcc = True
                 
         if validAcc == False:
@@ -65,12 +60,10 @@ class Login(webapp2.RequestHandler):
         
         if validAcc == True:
             self.response.set_cookie("CurrentUser", uNm, max_age=100, path="/")
-            if (getAccount(uNm, userList).getaType() == 's'):
+            if (getAccount(uNm, userList).aType == 's'):
                 self.redirect("/studentcenter")
-                print("Student")
         
             else:
-                print("Instructor")
                 self.redirect("/instructorcenter")
                 
         else:
