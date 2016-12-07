@@ -25,23 +25,15 @@ from test import *
 from util import *
 from faq import *
 
-#JINJA_ENVIRONMENT = jinja2.Environment(
-#    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-#    extensions=['jinja2.ext.autoescape'],
-#autoescape=True)
-
+# end touples need to be fixed so they have logout and adminpage
 userList = parseTxt("accounts.csv")
 app = webapp2.WSGIApplication([
 	('/', Login),
     ('/studentcenter', StudentCenter),
     ('/instructorcenter', InstructorCenter),
-	#('/test', Test),
-	('/chat', Chat)#,
-    #('/faq', Faq)
+	('/chat', Chat)
 ])
 
-# end touples need to be fixed so they have logout and adminpage
-
+# Unit tests
 suite = unittest.TestLoader().loadTestsFromTestCase(Test)
 unittest.TextTestRunner().run(suite)
-
