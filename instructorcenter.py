@@ -10,12 +10,16 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
+# Project imports
+from user import *
+from util import *
+
 class InstructorCenter(webapp2.RequestHandler):
     def get(self):
         uNm = self.request.cookies.get('CurrentUser')
-        instructor = User.query(User.name == uNm).get()
+        instructor = User.query(User.Name == uNm).get()
         QL = []
-        QL.append(Question.query(Question.lec == 'cs361').fetch())
+        #QL.append(Question.query(Question.lec == 'cs361').fetch())
         template = JINJA_ENVIRONMENT.get_template('Html/insc.html')
         uNm = self.request.get("CurrentUser")#probably pointless
         template_values = {
