@@ -23,7 +23,7 @@ class Login(webapp2.RequestHandler):
         if self.request.cookies.get("CurrentUser") == None:
             uNm = self.request.get('uName')
         if uNm == "":
-            template = JINJA_ENVIRONMENT.get_template('Html/login.html')
+            template = JINJA_ENVIRONMENT.get_template('/Html/login.html')
             template_values = {
                 "user": uNm,
                 "error": error
