@@ -10,14 +10,26 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
+# Project imports
+from lecture import *
+
 class User(ndb.Model):
     Name = ndb.StringProperty()
     userName = ndb.StringProperty()
     password = ndb.StringProperty()
     aType = ndb.StringProperty()
-    #lectures = ndb.StructuredProperty(Lecture, Repeated=True) # Breaks because we don't have Lecture yet
+    #lectures = ndb.StructuredProperty(Lecture, Repeated=True)
 
-    #def createUser(self):
-    #    """stuff here"""
-    #def toString(self):
-    #    """stuff here"""
+    def toString(self):
+        s= ("("+self.name + (",") + self.userName + (",") + self.password + (",") + self.aType + (",") + ("{") )
+        
+        # Old version
+        #for i in self.Lectures.length():
+        #    s.append(i.Name)
+        #    s.append(";")
+         
+        # To be tested
+        #s.append(str(Lectures))
+        s.append("}")
+        s.append(")")
+        return s

@@ -10,6 +10,21 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
+# Project imports
+from login import *
+from chat import *
+from adminpage import *
+from instructorcenter import *
+from lecture import *
+from logout import *
+from message import *
+from question import *
+from studentcenter import *
+from user import *
+from test import *
+from util import *
+from faq import *
+
 class Test(unittest.TestCase):
     def setUp(self):
         self.testbed = testbed.Testbed()
@@ -31,4 +46,4 @@ class Test(unittest.TestCase):
         self.assertEqual(self.message.toString(), ("(" + self.content + "," + self.name + ","  + str(self.now) + ")"))
 
     def testLoginCheck(self):
-        self.assertEqual(Login.checkName("?"))
+        self.assertEqual(Login().checkName("?"), False)
