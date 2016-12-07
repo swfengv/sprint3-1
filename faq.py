@@ -1,3 +1,4 @@
+# Library imports
 import webapp2
 import jinja2
 import os
@@ -9,14 +10,9 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
-#JINJA_ENVIRONMENT = jinja2.Environment(
-#    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-#    extensions=['jinja2.ext.autoescape'],
-#autoescape=True)
-
 class FAQ(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('faq.html')
+        template = JINJA_ENVIRONMENT.get_template('Html/faq.html')
         user = self.request.cookies.get("CurrentUser")
 
         faqs = list(questionAnswer.query().order(questionAnswer.heading, -questionAnswer.heading))

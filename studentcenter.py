@@ -1,3 +1,4 @@
+# Library imports
 import webapp2
 import jinja2
 import os
@@ -13,7 +14,7 @@ class StudentCenter(webapp2.RequestHandler):
    def get(self):
        uNm = self.request.cookies.get("CurrentUser")
        #unm is null
-       template = JINJA_ENVIRONMENT.get_template('stdc.html')
+       template = JINJA_ENVIRONMENT.get_template('Html/stdc.html')
        QL = []
        QL.append((list)(Question.query(Question.owner==uNm).fetch()))
 

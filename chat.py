@@ -1,3 +1,4 @@
+# Library imports
 import webapp2
 import jinja2
 import os
@@ -9,14 +10,9 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
-#JINJA_ENVIRONMENT = jinja2.Environment(
-#    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-#    extensions=['jinja2.ext.autoescape'],
-#autoescape=True)
-
 class Chat(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('chat.html')
+        template = JINJA_ENVIRONMENT.get_template('Html/chat.html')
 
         student = self.request.get("student")
         user = self.request.cookies.get("CurrentUser")

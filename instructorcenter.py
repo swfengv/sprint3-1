@@ -1,3 +1,4 @@
+# Library imports
 import webapp2
 import jinja2
 import os
@@ -15,7 +16,7 @@ class InstructorCenter(webapp2.RequestHandler):
         instructor = User.query(User.name == uNm).get()
         QL = []
         QL.append(Question.query(Question.lec == 'cs361').fetch())
-        template = JINJA_ENVIRONMENT.get_template('insc.html')
+        template = JINJA_ENVIRONMENT.get_template('Html/insc.html')
         uNm = self.request.get("CurrentUser")#probably pointless
         template_values = {
             "CurrentUser": uNm,
