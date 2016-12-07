@@ -18,19 +18,17 @@ from instructorcenter import *
 from lecture import *
 from logout import *
 from message import *
-from old import *
 from question import *
 from studentcenter import *
 from user import *
 from test import *
 from util import *
+from faq import *
 
-
-JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-    extensions=['jinja2.ext.autoescape'],
-autoescape=True)
-
+#JINJA_ENVIRONMENT = jinja2.Environment(
+#    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+#    extensions=['jinja2.ext.autoescape'],
+#autoescape=True)
 
 userList = parseTxt("accounts.csv")
 app = webapp2.WSGIApplication([
@@ -38,8 +36,8 @@ app = webapp2.WSGIApplication([
     ('/studentcenter', StudentCenter),
     ('/instructorcenter', InstructorCenter),
 	#('/test', Test),
-	('/chat', Chat),
-    ('/faq', Faq)
+	('/chat', Chat)#,
+    #('/faq', Faq)
 ])
 
 # end touples need to be fixed so they have logout and adminpage
