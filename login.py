@@ -65,7 +65,7 @@ class Login(webapp2.RequestHandler):
         
             else:
                 self.redirect("/instructorcenter")
-                
+            
         else:
             error = "enter a valid username and password"
 

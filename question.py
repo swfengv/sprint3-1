@@ -15,5 +15,31 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
+# Project imports
+from message import *
+
 class Question(ndb.Model):
-    """stuff here"""
+    topic = ndb.StringProperty()
+    lec = ndb.StringProperty()
+    time = datetime.datetime.now()
+    #messageList = ndb.StructuredProperty(Message, Repeated=True)
+
+    def toString(self):
+        s = (("(")+ self.topic + (",") + self.lec  + (",") + self.time  + (",") + ("{") )
+                    # str = str.append(self.content)
+                    #        str.append(,)
+                    # str.append(self.topic)
+                    #str.append(,)
+                    # str.append(self.student)
+                    #str.append(,)
+                    # str.append(self.lec)
+                    # str.append(,)
+                    # str.append(self.time)
+                    #str.append(,)
+                    # str.append({)
+        for i in self.MessageList.length():
+            s.append(i.toString())
+            s.append(";")
+        s.append("}")
+        s.append(")")
+        return s
