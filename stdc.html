@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<html lang="en-US">
+<head>
+	<title>Student Center</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+
+</head>
+
+<body>
+
+<h1>
+Welcome {{uNm}}
+</h1>
+
+<div id="previous_questions">
+Your Previously asked questions:
+</div>
+
+<div id="list_of_questions">
+	<table>
+	<tr>
+    <th>Topic           | </th>
+	<th>Time           | </th>
+	<th>Instructor         | </th>
+	<th>Answered    | </th>
+	</tr>
+	{% for item in QuestionList %}
+	<tr>
+    <td>{{ item.topic }}</td>
+		<td>{{ item.time }}</td>
+		<td>{{ item.owner }}</td>
+  	<td>{{ item.answered }}</td>
+	</tr>
+	{% endfor %}
+
+	</table>
+</div>
+
+<!--<div>
+<p>hello world</p>
+{% for item in range(0,3) %}
+{{item.topic}}<br>hiiys<br>{{item.owner}}<br>
+{% endfor %}
+</div>
+<br><br><br><br>-->
+
+<form action="/chat" method="get">
+  <input type="submit" value="Go to Question">
+</form>
+<form action="/studentcenter" method="post">
+<div id="new_question">
+Ask a new question:
+<br>
+<textarea input type="text" name="topic" rows="1" cols="48">
+Enter a Topic
+</textarea>
+    <br>
+<textarea input type="text" name="content" rows="5" cols="48">
+Ask a new question(Please check the F.A.Q first)
+</textarea>
+<br>
+    <br>
+Select a Class
+<br>
+<!-- <select> -->
+	<input type="text" value="cs361" name="class"></input>
+
+	<!-- <option value="cs361" name=class> this</option> -->
+<!-- </select> -->
+<br>
+</div>
+
+
+<input type="submit" value= "Ask a question"/>
+</form>
+
+<div id="gotoFAQ">
+	<td><a href="faqq.html">Go to F.A.Q</a></td>
+</div>
+
+</body>
+</html>
