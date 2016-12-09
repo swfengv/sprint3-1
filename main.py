@@ -24,6 +24,8 @@ from user import *
 from test import *
 from util import *
 from faq import *
+from questionanswer import *
+
 
 # end touples need to be fixed so they have logout and adminpage
 #userList = parseTxt("accounts.csv")
@@ -31,7 +33,8 @@ app = webapp2.WSGIApplication([
 	('/', Login),
     ('/studentcenter', StudentCenter),
     ('/instructorcenter', InstructorCenter),
-	('/chat', Chat)
+	('/chat', Chat),
+	('/faq', FAQ)
 ])
 
 # Unit tests
