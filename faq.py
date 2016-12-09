@@ -10,11 +10,19 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
+# Project imports
+from user import *
+from util import *
+from question import *
+from questionanswer import *
+
 class FAQ(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('Html/faq.html')
+
+        template = JINJA_ENVIRONMENT.get_template('/Html/faq.html')
         user = self.request.cookies.get("CurrentUser")
 
+        print(user)
         faqs = list(questionAnswer.query().order(questionAnswer.heading, -questionAnswer.heading))
 
         template_values = {
