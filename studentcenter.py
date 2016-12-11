@@ -22,6 +22,8 @@ class StudentCenter(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('Html/stdc.html')
         QL = []
         #QL.append((list)(Question.query(Question.owner==uNm).fetch()))
+        
+        print(uNm)
 
         template_values = {
             "uNm" : uNm,
@@ -43,11 +45,9 @@ class StudentCenter(webapp2.RequestHandler):
         lecture = self.request.get("lecture")
         
         if lecture != "":
-            self.goToFaq()
+            self.redirect("/faq")
 
         if self.request.get("topc") != "":
             question.put()
             self.redirect("/studentcenter")
 
-    def goToFaq(self):
-        self.redirect("/faq")

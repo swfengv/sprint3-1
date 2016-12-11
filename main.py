@@ -26,9 +26,11 @@ from util import *
 from faq import *
 from questionanswer import *
 
-
 # end touples need to be fixed so they have logout and adminpage
 #userList = parseTxt("accounts.csv")
+parseUserString("ed, Edward, 123, i\n")
+parseUserString("al, Albert, 321, s\n")
+
 app = webapp2.WSGIApplication([
 	('/', Login),
     ('/studentcenter', StudentCenter),
