@@ -20,11 +20,20 @@ class InstructorCenter(webapp2.RequestHandler):
         instructor = User.query(User.Name == uNm).get()
         QL = []
         #QL.append(Question.query(Question.lec == 'cs361').fetch())
+        for lec in instructor.lectures():
+            for Q in lec.QL:
+                QL.append(Q)
+        SL = []
+        for lec in instructor.lectures():
+            for username in lec.userNames:
+                if !SL.contains(username):
+                    SL.append(username)
         template = JINJA_ENVIRONMENT.get_template('Html/insc.html')
         uNm = self.request.get("CurrentUser")#probably pointless
         template_values = {
             "CurrentUser": uNm,
             'QL': QL,
+            'SL': SL
         }
         self.response.write(template.render(template_values))
 

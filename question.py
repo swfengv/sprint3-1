@@ -19,6 +19,7 @@ autoescape=True)
 from message import *
 
 class Question(ndb.Model):
+    student = ndb.StringProperty()
     topic = ndb.StringProperty()
     lec = ndb.StringProperty()
     time = datetime.datetime.now()
