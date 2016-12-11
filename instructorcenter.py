@@ -26,7 +26,7 @@ class InstructorCenter(webapp2.RequestHandler):
         SL = []
         for lec in instructor.lectures():
             for username in lec.userNames:
-                if !SL.contains(username):
+                if not SL.contains(username):
                     SL.append(username)
         template = JINJA_ENVIRONMENT.get_template('Html/insc.html')
 
