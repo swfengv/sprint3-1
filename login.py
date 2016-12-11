@@ -45,30 +45,29 @@ class Login(webapp2.RequestHandler):
                 self.redirect('/instructorcenter')
 
     def post(self):
-        userList = parseTxt("accounts.csv") # Moved from main, maybe this should not even be here.
-        
         validAcc = False
         uNm = self.request.get("uName")
         uPwd = self.request.get('uPass')
         
-        for item in userList:
-            if item.Name == str(uNm) and item.password == str(uPwd):
-                validAcc = True
-                
-        if validAcc == False:
-            self.redirect("/") # Needs an error message, this structure does not take care of that
-        
-        if validAcc == True:
-            self.response.set_cookie("CurrentUser", uNm, max_age=100, path="/")
-            if (getAccount(uNm, userList).aType == 's'):
-                self.redirect("/studentcenter")
-        
-            else:
-                self.redirect("/instructorcenter")
-            
-        else:
-            error = "enter a valid username and password"
+        query = list(User.query(User.Name == uNm, User.password == uPwd))
+        print(query)
 
+        if len(query) != 0:
+            if query[0].aType == "i":
+                self.response.set_cookie("CurrentUser", uNm, max_age=360, path="/")
+                self.redirect("/instructorcenter")
+                
+            elif query[0].aType == "s":
+                self.response.set_cookie("CurrentUser", uNm, max_age=360, path="/")
+                self.redirect("/studentcenter")
+                
+            else:
+                self.redirect("/")
+
+        if len(query) == 0:
+            self.redirect("/")
+            
+        
     def checkName(self, name):
         if "?" in name or "&" in name or "+" in name:
             return False

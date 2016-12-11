@@ -28,7 +28,6 @@ class InstructorCenter(webapp2.RequestHandler):
         }
         self.response.write(template.render(template_values))
 
-
     def post(self):
         q = Question()
         q.time = datetime.datetime.now()

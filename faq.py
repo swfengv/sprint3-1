@@ -20,11 +20,13 @@ class FAQ(webapp2.RequestHandler):
     def get(self):
 
         template = JINJA_ENVIRONMENT.get_template('/Html/faq.html')
-        user = self.request.cookies.get("CurrentUser")
+        user = self.request.cookies.get('CurrentUser')
 
-        print(user)
+        print(getAccount(user, userList))
+        print("User Name is: " + user)
         faqs = list(questionAnswer.query().order(questionAnswer.heading, -questionAnswer.heading))
-
+        print(faqs)
+        
         template_values = {
             "user": getAccount(user, userList),
             "faqs": faqs
@@ -33,7 +35,6 @@ class FAQ(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
     def post(self):
-
         if self.request.get("heading") == "" or self.request.get("question") == "" or self.request.get("answer") == "":
             user = self.request.cookies.get("CurrentUser")
             self.redirect("/messcenter?user=" + user)

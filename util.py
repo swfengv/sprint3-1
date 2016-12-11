@@ -10,6 +10,7 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
+# Project imports
 from user import *
 
 userList = []
@@ -19,8 +20,34 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
-def parseTxt(name):
+def parseUserString(string):
+    subStr = string
+    
+    while subStr != "":
+        userName = subStr[:subStr.find(",")].strip() # We assume that the string does not begin with a comma
+        
+        subStr = subStr[subStr.find(",") + 1:] # Move the sub string forward
+        accountName = userPassword = subStr[:subStr.find(",")].strip() # Get data
+        
+        subStr = subStr[subStr.find(",") + 1:] # Move the sub string forward
+        userPassword = subStr[:subStr.find(",")].strip() # Get data
+        
+        subStr = subStr[subStr.find(",") + 1:] # Move the sub string forward
+        account = subStr[:subStr.find(",")].strip() # Get data
+        
+        user = User() # Create the user
+        
+        user.Name = userName
+        user.userName = accountName
+        user.password = userPassword
+        user.aType = account
+        
+        print(user)
+        user.put() # Put to the data store
+        subStr = subStr[subStr.find("\n") + 1:] # Equivalent to readline, this just moves to the next line of text
+        
 
+def parseTxt(name):
     f = open(name,"r")
     st = f.readline()
     result = []
