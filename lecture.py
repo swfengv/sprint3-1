@@ -12,8 +12,8 @@ from google.appengine.ext import testbed
 
 class Lecture(ndb.Model):
     name = ndb.StringProperty()
-    #userNames = ndb.StringProperty(Repeated=True)
-    #QL = ndb.StructuredProperty(Question, Repeated=True)
+    userNames = ndb.StringProperty(Repeated=True)
+    QL = ndb.StructuredProperty(Question, Repeated=True)
 
     def enroll(self, User):
         self.userNames.append(User.userName)
@@ -39,7 +39,7 @@ class Lecture(ndb.Model):
         #str.append(self.QL.amount())
         s.append(")")
         return s
-   
+
     def inclass(self, User):
         #for i in userNames:
         #   if i is User.userName:
@@ -48,8 +48,6 @@ class Lecture(ndb.Model):
 
         if User.userName in userNames:
             return false
-            
+
         else:
             return true
-        
-        
