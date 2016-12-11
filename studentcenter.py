@@ -23,8 +23,6 @@ class StudentCenter(webapp2.RequestHandler):
         QL = []
         #QL.append((list)(Question.query(Question.owner==uNm).fetch()))
         
-        print(uNm)
-
         template_values = {
             "uNm" : uNm,
             "QL" : QL

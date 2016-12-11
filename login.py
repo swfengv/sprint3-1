@@ -54,11 +54,11 @@ class Login(webapp2.RequestHandler):
 
         if len(query) != 0:
             if query[0].aType == "i":
-                self.response.set_cookie("CurrentUser", uNm, max_age=360, path="/")
+                self.response.set_cookie("CurrentUser", uNm, max_age=100, path="/")
                 self.redirect("/instructorcenter")
-                
+            
             elif query[0].aType == "s":
-                self.response.set_cookie("CurrentUser", uNm, max_age=360, path="/")
+                self.response.set_cookie("CurrentUser", uNm, max_age=100, path="/")
                 self.redirect("/studentcenter")
                 
             else:
@@ -66,7 +66,6 @@ class Login(webapp2.RequestHandler):
 
         if len(query) == 0:
             self.redirect("/")
-            
         
     def checkName(self, name):
         if "?" in name or "&" in name or "+" in name:
