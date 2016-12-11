@@ -22,13 +22,14 @@ autoescape=True)
 
 def parseUserString(string):
     subStr = string
-    
+
     while subStr != "":
         userName = subStr[:subStr.find(",")].strip() # We assume that the string does not begin with a comma
         
-        if list(User.query(User.Name == userName)) != 0:
-            #print("User Already exists")
-            return
+        #if list(User.query(User.Name == userName)) != 0:
+        #    return
+            
+        #print("Loop")
 
         subStr = subStr[subStr.find(",") + 1:] # Move the sub string forward
         accountName = userPassword = subStr[:subStr.find(",")].strip() # Get data
@@ -46,7 +47,6 @@ def parseUserString(string):
         user.password = userPassword
         user.aType = account
         
-        print(user)
         user.put() # Put to the data store
         subStr = subStr[subStr.find("\n") + 1:] # Equivalent to readline, this just moves to the next line of text
 
