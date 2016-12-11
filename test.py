@@ -34,9 +34,6 @@ class Test(unittest.TestCase):
     def tearDown(self):
         self.testbed.deactivate()
 
-    def testTxtName(self):
-        self.assertEqual(parseTxt("accounts.txt"), None)
-
     def testMessageToString(self):
         self.content = "This is a message from Alice"
         self.name = "Alice"

@@ -16,8 +16,8 @@ from util import *
 
 class InstructorCenter(webapp2.RequestHandler):
     def get(self):
-        uNm = self.request.cookies.get('CurrentUser')
-        instructor = User.query(User.Name == uNm).get()
+        uNm = getAccount(self.request.cookies.get('CurrentUser'))
+        instructor = User.query(User.Name == uNm.userName).get()
         QL = []
         #QL.append(Question.query(Question.lec == 'cs361').fetch())
         for lec in instructor.lectures():
@@ -29,14 +29,14 @@ class InstructorCenter(webapp2.RequestHandler):
                 if !SL.contains(username):
                     SL.append(username)
         template = JINJA_ENVIRONMENT.get_template('Html/insc.html')
-        uNm = self.request.get("CurrentUser")#probably pointless
+
+        
         template_values = {
-            "CurrentUser": uNm,
+            "CurrentUser": uNm.userName,
             'QL': QL,
             'SL': SL
         }
         self.response.write(template.render(template_values))
-
 
     def post(self):
         q = Question()
