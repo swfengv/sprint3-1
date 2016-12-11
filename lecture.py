@@ -10,10 +10,13 @@ import unittest
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
 
+# Project imports
+from question import *
+
 class Lecture(ndb.Model):
     name = ndb.StringProperty()
-    userNames = ndb.StringProperty(Repeated=True)
-    QL = ndb.StructuredProperty(Question, Repeated=True)
+    userNames = ndb.StringProperty(repeated=True)
+    QL = ndb.StringProperty(repeated=True)
 
     def enroll(self, User):
         self.userNames.append(User.userName)

@@ -18,7 +18,8 @@ class User(ndb.Model):
     userName = ndb.StringProperty()
     password = ndb.StringProperty()
     aType = ndb.StringProperty()
-    lectures = ndb.StructuredProperty(Lecture, Repeated=True)
+    lectures = ndb.StringProperty(repeated=True)
+    #lectures = ndb.StructuredProperty(Lecture, repeated=True)
 
     def toString(self):
         s= ("("+self.name + (",") + self.userName + (",") + self.password + (",") + self.aType + (",") + ("{") )
