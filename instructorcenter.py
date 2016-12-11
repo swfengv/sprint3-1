@@ -17,14 +17,17 @@ from util import *
 class InstructorCenter(webapp2.RequestHandler):
     def get(self):
         uNm = getAccount(self.request.cookies.get('CurrentUser'))
-        instructor = User.query(User.Name == uNm.userName).get()
+        instructor = User.query(User.Name == uNm.Name).get()
         QL = []
         #QL.append(Question.query(Question.lec == 'cs361').fetch())
-        for lec in instructor.lectures():
+        
+        print("\t\t" + str(type(instructor.lectures)))
+        
+        for lec in instructor.lectures:
             for Q in lec.QL:
                 QL.append(Q)
         SL = []
-        for lec in instructor.lectures():
+        for lec in instructor.lectures:
             for username in lec.userNames:
                 if not SL.contains(username):
                     SL.append(username)
