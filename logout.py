@@ -16,4 +16,11 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 autoescape=True)
 
 class Logout(webapp2.RequestHandler):
-    """stuff here"""
+    def get(self)
+        self.response.delete_cookie('user')
+        self.response.delete_cookie('username')
+        self.redirect('/')
+
+    routes = [webapp2.Route(r'/login/<:.*>', Login, handler_method='any')]
+
+    app = webapp2.WSGIApplication(routes, debug=True)
